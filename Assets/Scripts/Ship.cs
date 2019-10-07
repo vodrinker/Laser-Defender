@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
     [SerializeField] private int HP = 100;
+    private int maxHP;
     [SerializeField] private int score, gold;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float shootsPerSec;
     [SerializeField] private GameObject laserPrefab;
+    [SerializeField] private GameObject healthBar;
     [SerializeField] private GameObject hitPrefab;
     [SerializeField] private AudioClip dmgTakenSound;
     [SerializeField] [Range(0, 0.5f)] float dmgTakenSoundVolume = 0.3f;
@@ -19,6 +22,7 @@ public class Ship : MonoBehaviour
 
     void Start()
     {
+        maxHP = HP;
         laserSpawn = transform.Find("LaserSpawn").gameObject;
         StartCoroutine(Shoot());
     }
@@ -52,7 +56,14 @@ public class Ship : MonoBehaviour
         else
         {
             AudioSource.PlayClipAtPoint(dmgTakenSound, transform.position, dmgTakenSoundVolume);
+            SetLifebar();
         }
+    }
+
+    private void SetLifebar()
+    {
+        float fillAmount = (float)HP / (float)maxHP;
+        healthBar.GetComponent<Image>().fillAmount = fillAmount;
     }
 
     private void Die()
@@ -69,5 +80,4 @@ public class Ship : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }
