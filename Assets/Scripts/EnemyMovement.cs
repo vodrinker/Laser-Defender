@@ -14,16 +14,18 @@ public class EnemyMovement : MonoBehaviour
     {
         myRigidbody2d = GetComponent<Rigidbody2D>();
         thisShip = gameObject.GetComponent<Ship>();
-        SetXYMinMax();
+        //SetXYMinMax();
+        moveSpeed = thisShip.GetMoveSpeed();
         direction = 2 * Vector3.right + Vector3.down;
+        myRigidbody2d.velocity = new Vector3(direction.x * moveSpeed, direction.y * moveSpeed);
     }
 
 
     void Update()
     {
-        CalculateDirection();
-        moveSpeed = thisShip.GetMoveSpeed();
-        myRigidbody2d.velocity = new Vector3(direction.x * moveSpeed, direction.y * moveSpeed);
+        //CalculateDirection();
+        //
+        //myRigidbody2d.velocity = new Vector3(direction.x * moveSpeed, direction.y * moveSpeed);
     }
 
     private void Disapear()
@@ -31,6 +33,8 @@ public class EnemyMovement : MonoBehaviour
         Destroy(gameObject);
     }
 
+
+    //not using it in this version
     void CalculateDirection()
     {
         if (myRigidbody2d.velocity.x > 0 && gameObject.transform.position.x > xMax)
@@ -47,6 +51,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    //not using it in this version
     private void SetXYMinMax()
     {
         Camera camera = Camera.main;
@@ -54,5 +59,14 @@ public class EnemyMovement : MonoBehaviour
         xMax = camera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
         yMin = camera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
         yMax = camera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "SideWalls")
+        {
+            direction = new Vector3(direction.x * -1, direction.y);
+            myRigidbody2d.velocity = new Vector3(direction.x, direction.y);
+        }
     }
 }
