@@ -5,13 +5,8 @@ using UnityEngine.UI;
 
 public class Gold : MonoBehaviour
 {
-    private int gold = 0;
-    private Text text;
-
-    private void Start()
-    {
-        text = gameObject.GetComponent<Text>();
-    }
+    [SerializeField] private int gold = 0;
+    [SerializeField] private Text text;
 
     public void AddGold(int newGold)
     {

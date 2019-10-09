@@ -4885,6 +4885,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Music player
       objectReference: {fileID: 0}
+    - target: {fileID: 5680386526060775927, guid: 6ed55e8344c8dfa41b439a2a904ccc0e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5680386526060775925, guid: 6ed55e8344c8dfa41b439a2a904ccc0e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5337,7 +5342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059447187aa42ee488abb14095e000b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveInterval: 7
+  waveInterval: 5
   waveConfigs:
   - {fileID: 11400000, guid: 22074bc89f4ea02459d812cfc1c0564b, type: 2}
   - {fileID: 11400000, guid: 7a8f072ab1443c7498e81ef0680586d2, type: 2}
@@ -5523,6 +5528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.0004
+  renderer: {fileID: 989036994}
 --- !u!1001 &1201185734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6050,6 +6056,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d79f02df42f84594315805c3420bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gold: 0
+  text: {fileID: 1992126102}
 --- !u!114 &1992126102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6090,6 +6098,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1992126099}
   m_CullTransparentMesh: 0
+--- !u!1 &2011403592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2011403594}
+  - component: {fileID: 2011403593}
+  m_Layer: 0
+  m_Name: GameObject pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2011403593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011403592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9caa161fa3b3048953789737ac3ac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: Laser
+    prefab: {fileID: 6303169688366109926, guid: af5b99a6aef53854ba3dcd506b07a984,
+      type: 3}
+    size: 30
+  - tag: BlueLaser
+    prefab: {fileID: 5166941986099202215, guid: b4bfc390de99b054dbd65bfa266509eb,
+      type: 3}
+    size: 30
+  - tag: Enemy
+    prefab: {fileID: 6020857486680560959, guid: f8f5e815a4abcc341aaf1dca4ca318ba,
+      type: 3}
+    size: 20
+  - tag: Enemy2
+    prefab: {fileID: 1484673252608815211, guid: 39a3492336c4e2c458574b49854f83fe,
+      type: 3}
+    size: 20
+  - tag: GreenYellowLaser
+    prefab: {fileID: 4670073035995898213, guid: b4ab7a844a554c84b9f6b545c106fab2,
+      type: 3}
+    size: 30
+  - tag: HitParticle
+    prefab: {fileID: 4410400653886144266, guid: 2cd32ec09499fd04fb84d23c8852532c,
+      type: 3}
+    size: 30
+--- !u!4 &2011403594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011403592}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2140869183
 GameObject:
   m_ObjectHideFlags: 0
@@ -6229,5 +6305,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 7848173308760417426, guid: c666bc2703435c249a4a9c56b98fab2a,
+        type: 3}
+      propertyPath: maxHP
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7848173308760417426, guid: c666bc2703435c249a4a9c56b98fab2a,
+        type: 3}
+      propertyPath: shootsPerSec
+      value: 8.88
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c666bc2703435c249a4a9c56b98fab2a, type: 3}

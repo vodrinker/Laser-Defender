@@ -5,16 +5,10 @@ using UnityEngine;
 public class BcgScroller : MonoBehaviour
 {
     [SerializeField] private float speed;
-    Material material;
-
-    void Start()
-    {
-        material = GetComponent<Renderer>().material;
-    }
-
+    [SerializeField] private Renderer renderer;
 
     void Update()
     {
-        material.mainTextureOffset += new Vector2(0f, speed);
+        renderer.material.mainTextureOffset += new Vector2(0f, speed);
     }
 }

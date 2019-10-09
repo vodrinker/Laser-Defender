@@ -6,35 +6,43 @@ public class Spawn : MonoBehaviour
 {
     [SerializeField] private float waveInterval = 0;
     [SerializeField] List<WaveConfig> waveConfigs;
-    private int waveIndex = 0;
-    private WaveConfig currentWave;
+    private int shipIndex = 0;
+    //private WaveConfig currentWave;
+    public class shipSpawnInfo
+    {
+        public string tag;
+        public WaitForSeconds time;
+    }
+    List<shipSpawnInfo> shipSpawnInfos = new List<shipSpawnInfo>();
 
     void Start()
     {
-        currentWave = waveConfigs[waveIndex];
-        StartCoroutine(SpawnWave(currentWave));
-    }
-
-    private IEnumerator SpawnWave(WaveConfig waveConfig)
-    {
-        //Debug.Log($"Wave: {waveIndex+1}/{waveConfigs.Count}");
-        GameObject shipPrefab = waveConfig.GetShipPrefab();
-        for (int shipsCounter = 0; shipsCounter < waveConfig.GetShipsAmount(); shipsCounter++)
+        //currentWave = waveConfigs[waveIndex];
+        for (int i = 0; i < waveConfigs.Count; i++)
         {
-            StartCoroutine(SpawnShip(shipPrefab, waveConfig.GetSpawnInterval() * shipsCounter));
+            for (int j = 0; j < waveConfigs[i].GetShipsAmount(); j++)
+            {
+                float cooldown = waveConfigs[i].GetSpawnInterval();
+                cooldown += (j == 0) ? waveInterval : 0;
+                shipSpawnInfo temp = new shipSpawnInfo();
+                temp.tag = waveConfigs[i].GetShipPrefab();
+                temp.time = new WaitForSeconds(cooldown);
+                shipSpawnInfos.Add(temp);
+                //Debug.Log($"")
+            }
         }
-
-        var timer = waveConfig.GetSummaryIntervals() + waveInterval;
-        yield return new WaitForSeconds(timer);
-
-        waveIndex = (waveIndex < waveConfigs.Count - 1) ? waveIndex + 1 : 0;
-        currentWave = waveConfigs[waveIndex];
-        StartCoroutine(SpawnWave(currentWave));
+        StartCoroutine(SpawnShip());
     }
 
-    private IEnumerator SpawnShip(GameObject prefab, float interval)
+    private IEnumerator SpawnShip()
     {
-        yield return new WaitForSeconds(interval);
-        Instantiate(prefab, transform.position, Quaternion.identity);
+        yield return shipSpawnInfos[shipIndex].time;
+        ObjectPooler.instance.SpawnFromPool(shipSpawnInfos[shipIndex].tag, transform.position, Quaternion.identity);
+        shipIndex++;
+        if (shipIndex == shipSpawnInfos.Count - 1)
+        {
+            shipIndex = 0;
+        }
+        StartCoroutine(SpawnShip());
     }
 }

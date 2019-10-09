@@ -6,38 +6,35 @@ using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
-    [SerializeField] private int HP = 100;
-    private int maxHP;
+    [SerializeField] private int maxHP = 100;
+    [SerializeField] private int hp;
     [SerializeField] private int score, gold;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float shootsPerSec;
-    [SerializeField] private GameObject laserPrefab;
+    [SerializeField] private string laserPrefabTag;
     [SerializeField] private GameObject healthBar;
-    [SerializeField] private GameObject hitPrefab;
+    [SerializeField] private string hitPrefabTag;
     [SerializeField] private AudioClip dmgTakenSound;
     [SerializeField] [Range(0, 0.5f)] float dmgTakenSoundVolume = 0.3f;
     [SerializeField] private AudioClip destroyedSound;
     [SerializeField] [Range(0, 0.5f)] float destroyedSoundVolume = 0.3f;
-    private GameObject laserSpawn;
+    [SerializeField] private GameObject laserSpawn;
+    private WaitForSecondsRealtime timeBetweenShots;
 
-    void Start()
+    private void OnEnable()
     {
-        maxHP = HP;
-        laserSpawn = transform.Find("LaserSpawn").gameObject;
+        hp = maxHP;
         StartCoroutine(Shoot());
-    }
-    
-    void Update()
-    {
-
+        RecalculateShotsPerSec();
+        SetLifebar();
     }
 
     IEnumerator Shoot()
     {
-        yield return new WaitForSecondsRealtime(1 / shootsPerSec);
+        yield return timeBetweenShots;
         if (Time.timeScale == 1)
         {
-            GameObject laser = Instantiate(laserPrefab, laserSpawn.transform.position, Quaternion.identity);
+            GameObject laser = ObjectPooler.instance.SpawnFromPool(laserPrefabTag, laserSpawn.transform.position, laserSpawn.transform.rotation);
             laser.GetComponent<Laser>().DidPlayerShotIt((gameObject.tag == "Player"));
         }
         StartCoroutine(Shoot());
@@ -50,9 +47,12 @@ public class Ship : MonoBehaviour
 
     public void TakeDmg(int dmg)
     {
-        Instantiate(hitPrefab, transform.position, Quaternion.identity);
-        HP -= dmg;
-        if (HP <= 0) Die();
+        ObjectPooler.instance.SpawnFromPool(hitPrefabTag, transform.position, Quaternion.identity);
+        hp -= dmg;
+        if (hp <= 0)
+        {
+            Die();
+         }
         else
         {
             AudioSource.PlayClipAtPoint(dmgTakenSound, transform.position, dmgTakenSoundVolume);
@@ -62,7 +62,7 @@ public class Ship : MonoBehaviour
 
     private void SetLifebar()
     {
-        float fillAmount = (float)HP / (float)maxHP;
+        float fillAmount = (float)hp / (float)maxHP;
         healthBar.GetComponent<Image>().fillAmount = fillAmount;
     }
 
@@ -77,7 +77,12 @@ public class Ship : MonoBehaviour
         {
             FindObjectOfType<Score>().AddScore(score);
             FindObjectOfType<Gold>().AddGold(gold);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
+    }
+
+    private void RecalculateShotsPerSec()
+    {
+        timeBetweenShots = new WaitForSecondsRealtime(1 / shootsPerSec);
     }
 }

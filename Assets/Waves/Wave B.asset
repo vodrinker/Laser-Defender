@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8aea3ddfc878d441940f7dda22f57d6, type: 3}
   m_Name: Wave B
   m_EditorClassIdentifier: 
-  shipPrefab: {fileID: 1484673252608815211, guid: 39a3492336c4e2c458574b49854f83fe,
-    type: 3}
+  shipPrefabTag: Enemy2
   spawnInterval: 0.8
   shipsAmount: 5

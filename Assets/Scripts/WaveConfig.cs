@@ -5,13 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Wave Config")]
 public class WaveConfig : ScriptableObject
 {
-    [SerializeField] GameObject shipPrefab;
+    [SerializeField] string shipPrefabTag;
     [SerializeField] float spawnInterval;
     [SerializeField] int shipsAmount;
 
-    public GameObject GetShipPrefab()
+    public string GetShipPrefab()
     {
-        return shipPrefab;
+        return shipPrefabTag;
     }
 
     public float GetSpawnInterval()

@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4552287411254180750}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: -0.257, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6020857486680560954}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &6020857486680560959
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fab3c50e1d9afb84ebf0bef774758401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myRigidbody2d: {fileID: 6020857486680560952}
+  thisShip: {fileID: 2051954186810390632}
 --- !u!114 &2051954186810390632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,20 +163,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0fb6c18a1ab0884ea99eb8d61a03de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 15
+  maxHP: 15
   score: 10
   gold: 1
   moveSpeed: 1
   shootsPerSec: 0.5
-  laserPrefab: {fileID: 5166941986099202215, guid: b4bfc390de99b054dbd65bfa266509eb,
-    type: 3}
+  laserPrefabTag: BlueLaser
   healthBar: {fileID: 5786918779090841374}
-  hitPrefab: {fileID: 4410400653886144266, guid: 2cd32ec09499fd04fb84d23c8852532c,
-    type: 3}
+  hitPrefabTag: HitParticle
   dmgTakenSound: {fileID: 8300000, guid: b2c6b91c833086a40a6ee0563a733053, type: 3}
   dmgTakenSoundVolume: 0.3
   destroyedSound: {fileID: 8300000, guid: e01f38fd5e0e20e47a33937978f3154c, type: 3}
   destroyedSoundVolume: 0.3
+  laserSpawn: {fileID: 4552287411254180750}
 --- !u!60 &3351985327115371170
 PolygonCollider2D:
   m_ObjectHideFlags: 0

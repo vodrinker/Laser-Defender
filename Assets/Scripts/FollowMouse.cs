@@ -6,16 +6,14 @@ public class FollowMouse : MonoBehaviour
 {
     private Vector3 mousePosition;
     private Vector2 direction;
-    private Rigidbody2D myRigidbody2d;
+    [SerializeField] private Rigidbody2D myRigidbody2d;
     private float moveSpeed;
-    private Ship player;
+    [SerializeField] private Ship player;
     private float xMax, xMin, yMax, yMin;
 
 
     void Start()
     {
-        myRigidbody2d = GetComponent<Rigidbody2D>();
-        player = GameObject.Find("Player").GetComponent<Ship>();
         SetXYMinMax();
     }
 

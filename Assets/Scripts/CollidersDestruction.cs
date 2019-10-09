@@ -6,6 +6,6 @@ public class CollidersDestruction : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Destroy(collider.gameObject);
+        collider.gameObject.SetActive(false);
     }
 }

@@ -128,6 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa41db418228a1b4c956f612d28f79cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myRigidbody2d: {fileID: 7848173308760417436}
+  player: {fileID: 7848173308760417426}
 --- !u!114 &7848173308760417426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,15 +147,14 @@ MonoBehaviour:
   gold: 0
   moveSpeed: 100
   shootsPerSec: 2
-  laserPrefab: {fileID: 6303169688366109926, guid: af5b99a6aef53854ba3dcd506b07a984,
-    type: 3}
+  laserPrefabTag: Laser
   healthBar: {fileID: 7495168624454731035}
-  hitPrefab: {fileID: 4410400653886144266, guid: 2cd32ec09499fd04fb84d23c8852532c,
-    type: 3}
+  hitPrefabTag: HitParticle
   dmgTakenSound: {fileID: 8300000, guid: b2c6b91c833086a40a6ee0563a733053, type: 3}
   dmgTakenSoundVolume: 0.3
   destroyedSound: {fileID: 8300000, guid: e01f38fd5e0e20e47a33937978f3154c, type: 3}
   destroyedSoundVolume: 0.3
+  laserSpawn: {fileID: 717721220688202428}
 --- !u!50 &7848173308760417436
 Rigidbody2D:
   serializedVersion: 4

@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be2ecd1abcd19974994036590a6d75b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 10
   playersShot: 0
   dmg: 10
   shootSound: {fileID: 8300000, guid: 2938fcd8d1e32404c9fb94c83f3c27fd, type: 3}

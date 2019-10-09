@@ -104,6 +104,21 @@ PrefabInstance:
       propertyPath: gold
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2051954186810390632, guid: f8f5e815a4abcc341aaf1dca4ca318ba,
+        type: 3}
+      propertyPath: laserPrefabTag
+      value: GreenYellowLaser
+      objectReference: {fileID: 0}
+    - target: {fileID: 2051954186810390632, guid: f8f5e815a4abcc341aaf1dca4ca318ba,
+        type: 3}
+      propertyPath: hp
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2051954186810390632, guid: f8f5e815a4abcc341aaf1dca4ca318ba,
+        type: 3}
+      propertyPath: maxHP
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 3351985327115371170, guid: f8f5e815a4abcc341aaf1dca4ca318ba,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x

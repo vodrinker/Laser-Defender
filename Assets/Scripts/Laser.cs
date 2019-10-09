@@ -11,9 +11,10 @@ public class Laser : MonoBehaviour
     [SerializeField] [Range(0, 0.2f)] float soundVolume = 0.03f;
     private Vector3 direction;
 
-    void Start()
+
+    private void OnEnable()
     {
-        direction = playersShot ? Vector3.up : Vector3.down;
+        direction = Vector3.up;
         AudioSource.PlayClipAtPoint(shootSound, transform.position, soundVolume);
     }
 
@@ -31,11 +32,11 @@ public class Laser : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(collision);
-        var tagToSeak = playersShot ? "Enemy" : "Player";
-        if (collision.transform.tag == tagToSeak)
+        string tagToSeak = playersShot ? "Enemy" : "Player";
+        if (collision.gameObject.CompareTag(tagToSeak))
         {
             collision.GetComponent<Ship>().TakeDmg(dmg);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
